@@ -743,7 +743,9 @@ binance_new_order <- function(symbol, side, type, time_in_force, quantity, price
                 stopifnot(ref_price$mins == filters[filterType == 'MIN_NOTIONAL', avgPriceMins])
                 ref_price <- ref_price$price
             }
-            stopifnot(ref_price * quantity >= filters[filterType == 'MIN_NOTIONAL', minNotional])
+            y <- filters[filterType == 'MIN_NOTIONAL', minNotional]
+            x <- ref_price * quantity >= y
+            stopifnot(is.na(y) | x)
         }
     }
 

@@ -15,8 +15,11 @@ BINANCE <- list(
 
 # Utils -------------------------------------------------------------------
 
-get_base_url <- function() {
-    return('https://api.binance.com')
+set_base_url <- function(test = FALSE) {
+    credentials$url <- 'https://api.binance.com'
+    if (test) {
+        credentials$url <- 'https://testnet.binance.vision/api'
+    }
 }
 
 #' Look up Binance API secret stored in the environment
@@ -112,7 +115,7 @@ binance_query <- function(endpoint, method = 'GET',
     }
 
     res <- query(
-        base = get_base_url(),
+        base = credentials$url,
         path = endpoint,
         method = method,
         params = params,

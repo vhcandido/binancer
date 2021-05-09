@@ -15,7 +15,7 @@ BINANCE <- list(
 
 # Utils -------------------------------------------------------------------
 
-set_base_url <- function(test = FALSE) {
+set_api_url <- function(test = FALSE) {
     credentials$url <- 'https://api.binance.com'
     if (test) {
         credentials$url <- 'https://testnet.binance.vision/api'
